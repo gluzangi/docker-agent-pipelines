@@ -6,9 +6,27 @@ pipeline {
         }
     }
     stages {
-        stage('Build') {
+        stage('Pipeline Setup') {
             steps {
-                sh 'php -m'
+                sh 'ls -al /tmp/'
+                sh 'php -m | tee -a /tmp/php-modules.txt'
+                sh 'ls -al /tmp/'
+            }
+        }
+        stage('DB Export') {
+            agent { 
+                docker 'mariadb:latest' 
+            }
+            steps {
+                echo 'MySQL/MariaDB Instance - Data Export'
+                sh 'ls -al ./'
+                sh './db-setup-cnf.sh'
+                sh 'cp ./my.cnf ~/.my.cnf'
+                sh 'cat ~/.my.cnf'
+                sh 'mysqldump --print-defaults'
+                sh 'mysqldump --databases db_wesites_dev > db-wesites-dev.sql'
+                sh 'ls -al ./'
+                sh 'printenv'
             }
         }
     }
