@@ -1,4 +1,4 @@
-pipelines {
+pipeline {
     agent {
         docker {
             image 'php:cli'
