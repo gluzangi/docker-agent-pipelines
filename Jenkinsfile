@@ -17,7 +17,7 @@ pipeline {
             agent { 
                 docker {
                     image 'mariadb:latest'
-                    args '-v /tmp:/tmp'
+                    /*args '-v /tmp:/tmp'*/
                 }
             }
             steps {
