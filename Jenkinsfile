@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'printenv'
                 sh 'php -m'
             }
         }
