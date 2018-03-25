@@ -6,7 +6,7 @@ pipeline {
         }
     }
     stages {
-        stage(Build) {
+        stage('Build') {
             steps {
                 sh 'printenv'
                 sh 'php -m'
