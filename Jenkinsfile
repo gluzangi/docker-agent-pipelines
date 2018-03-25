@@ -15,7 +15,10 @@ pipeline {
         }
         stage('DB Export') {
             agent { 
-                docker 'mariadb:latest' 
+                docker {
+                    image 'mariadb:latest'
+                    args '-v /tmp:/tmp'
+                }
             }
             steps {
                 echo 'MySQL/MariaDB Instance - Data Export'
