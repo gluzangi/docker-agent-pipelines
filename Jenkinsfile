@@ -18,6 +18,7 @@ pipeline {
                 docker {
                     image 'mariadb:latest'
                     /*args '-v /tmp:/tmp'*/
+                    reuseNode true
                 }
             }
             steps {
